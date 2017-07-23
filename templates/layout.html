@@ -14,17 +14,27 @@
         <header>
             <div class="container">
                 <div class="site-header">
-                    <a class="logo" href="index.html"><i class="material-icons">library_books</i></a>
+                    <a class="logo" href="{{ url_for('index') }}"><i class="material-icons">library_books</i></a>
                     <a class="button icon-right" href="new.html"><span>New Entry</span> <i class="material-icons">add</i></a>
                 </div>
             </div>
             <nav>
                 <a href="{{ url_for('register') }}">Register</a>
-                <a href="#">Log in</a>
-                <a href="#">Log out</a>
+                <a href="{{ url_for('login') }}">Log in</a>
+                <a href="{{ url_for('logout') }}">Log out</a>
                 <a href="#">Add entry</a>
             </nav>
         </header>
+        <!-- Add flash messages -->
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="notification {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Enter content for specific html pages -->
         {% block content %}
         {% endblock %}
     <footer>
