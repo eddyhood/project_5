@@ -26,7 +26,7 @@ class User(UserMixin, Model):
                 cls.create(
                     username=username,
                     email=email,
-                    password=app.bcrypt.get_password_hash(password)
+                    password=app.bcrypt.generate_password_hash(password)
                     )
         except IntegrityError:
             raise ValueError('User already exists')
