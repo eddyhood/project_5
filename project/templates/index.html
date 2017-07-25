@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Welcome to Journalist</h1>
+    {% if current_user.is_authenticated %}
+        <h4>Welcome {{current_user.username}}! Your Journal is Below.</h4>
+        {% endif %}
+        <section>
+            <div class="container">
+                <div class="entry-list">
+                {% if entries %}
+                    {% for entry in entries %}
+                        {{entry.title}}
+                    {% endfor %}
+                {% else %}
+                    <p>No journal entries yet.</p>
+                {% endif %}
+                    </article>
+                </div>
+            </div>
+        </section>
+{% endblock %}
