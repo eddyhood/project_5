@@ -35,11 +35,12 @@ class User(UserMixin, Model):
 class Journal(Model):
     """Model for creating a new journal entry """
     user = ForeignKeyField(User, related_name="journal")
-    title = CharField(max_length=100)
+    title = CharField()
     date = DateField()
     time = IntegerField()
     entry = TextField()
     resources = TextField()
+    tag = CharField()
     timestamp = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
@@ -47,15 +48,8 @@ class Journal(Model):
         order_by = ('-timestamp',)
 
 
-
-class Tag(Model):
-    """Model for creating a new tag"""
-    journal = ForeignKeyField(Journal, related_name='tag')
-    tag = CharField(max_length="20")
-
-
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Journal, Tag], safe=True)
+    DATABASE.create_tables([User, Journal], safe=True)
     DATABASE.close()
 
