@@ -54,13 +54,6 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/entries')
-def list():
-    """List view of all entries"""
-    entries = models.Journal.select().limit(7)
-    return render_template('entries.html', entries=entries)
-
-
 @app.route('/register', methods=('GET', 'POST'))
 def register():
     """Provide a registration page & form to capture new users"""
@@ -119,12 +112,38 @@ def add_entry():
         return redirect(url_for('index'))
     return render_template('new.html', form=form)
 
+@app.route('/entries')
+def list():
+    """List view of all entries"""
+    entries = models.Journal.select().limit(7)
+    return render_template('entries.html', entries=entries)
 
-@app.route('/details/<entry_title>')
+
+@app.route('/entries/<entry_title>')
 def details(entry_title):
     """Allows a user to look at the details of a journal entry"""
     entry = models.Journal.select().where(models.Journal.title == entry_title)
     return render_template('detail.html', entry=entry)
+
+@app.route('/entries/edit/<entry_title>', methods=('GET', 'POST'))
+def edit(entry_title):
+    """Prepopulates a form with original entry and allows user to change
+    any field and then resave the entry to the database."""
+    entry = models.Journal.get(models.Journal.title == entry_title)
+    form = forms.AddEntryForm(obj=entry)
+    if form.validate_on_submit():
+        form.populate_obj(entry)
+        entry.title = form.title.data
+        entry.date = form.date.data
+        entry.time = form.time.data
+        entry.entry = form.entry.data
+        entry.resources = form.entry.data
+        entry.tag = form.tag.data
+        entry.save()
+        flash('Your entry has been updated!')
+        return redirect(url_for('list'))
+    return render_template('edit.html', form=form, entry=entry)
+
 
 
 if __name__ == '__main__':
