@@ -96,6 +96,7 @@ def logout():
 
 
 @app.route('/entry', methods=('GET', 'POST'))
+@login_required
 def add_entry():
     """Allows a user to add a new entry to the journal"""
     form = forms.AddEntryForm()
@@ -113,6 +114,7 @@ def add_entry():
     return render_template('new.html', form=form)
 
 @app.route('/entries')
+@login_required
 def entries():
     """List view of all entries"""
     entries = models.Journal.select().limit(7)
@@ -120,12 +122,14 @@ def entries():
 
 
 @app.route('/entries/<entry_title>')
+@login_required
 def details(entry_title):
     """Allows a user to look at the details of a journal entry"""
     entry = models.Journal.select().where(models.Journal.title == entry_title)
     return render_template('detail.html', entry=entry)
 
 @app.route('/entries/edit/<entry_title>', methods=('GET', 'POST'))
+@login_required
 def edit(entry_title):
     """Prepopulates a form with original entry and allows user to change
     any field and then resave the entry to the database."""
@@ -146,6 +150,7 @@ def edit(entry_title):
 
 
 @app.route('/entries/delete/<entry_title>', methods=('GET', 'POST'))
+@login_required
 def delete(entry_title):
     entry = models.Journal.get(models.Journal.title == entry_title)
     form = forms.DeleteEntryForm()
@@ -157,6 +162,13 @@ def delete(entry_title):
             flash('Enter the exact title to delete', 'error')
         return redirect(url_for('entries'))
     return render_template('delete.html', form=form, entry=entry)
+
+
+@app.route('/entries/tag/<tag>')
+@login_required
+def tagview(tag):
+    get_entries = models.Journal.select().where(models.Journal.tag == tag)
+    return render_template('taged.html', entries=get_entries)
 
 
 if __name__ == '__main__':
