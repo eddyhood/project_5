@@ -23,7 +23,7 @@
             <nav>
                 {% if current_user.is_authenticated %}
                     <a href="{{ url_for('add_entry')}}">Add entry</a>
-                    <a href="{{ url_for('list')}}">Your Entries</a>
+                    <a href="{{ url_for('entries')}}">Your Entries</a>
                     <a href="{{ url_for('logout') }}">Log out</a>
                 {% else%}
                     <a href="{{ url_for('register') }}">Register</a>

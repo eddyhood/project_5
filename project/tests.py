@@ -23,7 +23,8 @@ class TemplatesTestCase(unittest.TestCase):
     # Make sure index template renders as expected
     def test_index_render(self):
         response = self.tester.get('/', content_type='html/text')
-        self.assertIn(b'Welcome to Journalist', response.data)
+        self.assertIn(b'Journalist helps you keep track of what you',
+                      response.data)
 
     # Make sure registration template renders as expected
     def test_registration_render(self):
@@ -122,12 +123,11 @@ class JournalEntryTestCase(unittest.TestCase):
                 tag='Fake Tag'), follow_redirects=True)
         self.assertIn(b'Your entry was recorded!', response.data)
 
-
-    def test_detail_render(self):
+    def test_entries_render(self):
         """Attempts to render detail page using journal entry from last test"""
-        response = self.tester.get('/details/Fake%20Journal%20Entry',
-            content_type='html/text')
-        self.assertTrue(b'Fake entry here' in response.data)
+        response = self.tester.get('/entries', content_type='html/text')
+        self.assertTrue(b'Journal Entries for' in response.data)
+
 
     def test_invalid_date_add_entry(self):
         """Tries to add an entry with a bad date.  Should get date message"""

@@ -77,3 +77,7 @@ class AddEntryForm(FlaskForm):
     tag = StringField('Tag')
 
 
+class DeleteEntryForm(FlaskForm):
+    confirm_message = StringField('Entry Title',validators=[DataRequired()])
+
+

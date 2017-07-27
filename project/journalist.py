@@ -113,7 +113,7 @@ def add_entry():
     return render_template('new.html', form=form)
 
 @app.route('/entries')
-def list():
+def entries():
     """List view of all entries"""
     entries = models.Journal.select().limit(7)
     return render_template('entries.html', entries=entries)
@@ -137,13 +137,26 @@ def edit(entry_title):
         entry.date = form.date.data
         entry.time = form.time.data
         entry.entry = form.entry.data
-        entry.resources = form.entry.data
+        entry.resources = form.resources.data
         entry.tag = form.tag.data
         entry.save()
         flash('Your entry has been updated!')
-        return redirect(url_for('list'))
+        return redirect(url_for('entries'))
     return render_template('edit.html', form=form, entry=entry)
 
+
+@app.route('/entries/delete/<entry_title>', methods=('GET', 'POST'))
+def delete(entry_title):
+    entry = models.Journal.get(models.Journal.title == entry_title)
+    form = forms.DeleteEntryForm()
+    if form.validate_on_submit():
+        if form.confirm_message.data == entry.title:
+            entry.delete_instance()
+            flash('Your entry was deleted', 'successs')
+        else:
+            flash('Enter the exact title to delete', 'error')
+        return redirect(url_for('entries'))
+    return render_template('delete.html', form=form, entry=entry)
 
 
 if __name__ == '__main__':
