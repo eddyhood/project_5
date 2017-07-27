@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Journal Entries for {{current_user.username}}</h1>
+        <section>
+            <div class="container">
+                <div class="entry-list">
+                <h3>Title/Date</h3>
+                {% if entries %}
+                    {% for entry in entries %}
+                        <a href="{{url_for('details', entry_title = entry.title)}}">{{entry.title}}</a>{{entry.date}}</br>
+                    {% endfor %}
+                {% else %}
+                    <p>No journal entries yet.</p>
+                {% endif %}
+                    </article>
+                </div>
+            </div>
+        </section>
+{% endblock %}

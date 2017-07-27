@@ -49,12 +49,16 @@ def teardown_request(exception):
     if db is not None:
         db.close()
 
-
 @app.route('/')
 def index():
-    """Home page view"""
+    return render_template('index.html')
+
+
+@app.route('/entries')
+def list():
+    """List view of all entries"""
     entries = models.Journal.select().limit(7)
-    return render_template('index.html', entries=entries)
+    return render_template('entries.html', entries=entries)
 
 
 @app.route('/register', methods=('GET', 'POST'))
