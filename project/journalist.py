@@ -116,11 +116,11 @@ def add_entry():
     return render_template('new.html', form=form)
 
 
-# @app.route('/details/<entry.title>')
-# def details(entry_title):
-#     """Allows a user to look at the details of a journal entry"""
-#     entry = models.Journal.select().where(models.Journal.title == entry_title)
-#     return render_template('detail.html', entry=entry)
+@app.route('/details/<entry_title>')
+def details(entry_title):
+    """Allows a user to look at the details of a journal entry"""
+    entry = models.Journal.select().where(models.Journal.title == entry_title)
+    return render_template('detail.html', entry=entry)
 
 
 if __name__ == '__main__':

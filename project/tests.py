@@ -39,9 +39,6 @@ class TemplatesTestCase(unittest.TestCase):
         response = self.tester.get('/entry', content_type='html/text')
         self.assertTrue(b'Add a New Journal Entry!' in response.data)
 
-    # def test_detail_render(self):
-    #     response = self.tester.get('/details', content_type='html/text')
-    #     self.assertTrue(b'Entry Summary' in response.data)
 
 class FormsTestCase(unittest.TestCase):
 
@@ -113,10 +110,11 @@ class JournalEntryTestCase(unittest.TestCase):
             follow_redirects=True)
 
     def test_valid_add_entry(self):
+        """Tests to see if an entry is added assuming the correct validation"""
         response=self.tester.post('/entry',
             data=dict(
                 user=current_user,
-                title='Fake Journal Entry',
+                title='FakeJournalEntry',
                 date='07/31/2017',
                 time=50,
                 entry='Fake entry here',
@@ -124,11 +122,19 @@ class JournalEntryTestCase(unittest.TestCase):
                 tag='Fake Tag'), follow_redirects=True)
         self.assertIn(b'Your entry was recorded!', response.data)
 
+
+    def test_detail_render(self):
+        """Attempts to render detail page using journal entry from last test"""
+        response = self.tester.get('/details/Fake%20Journal%20Entry',
+            content_type='html/text')
+        self.assertTrue(b'Fake entry here' in response.data)
+
     def test_invalid_date_add_entry(self):
+        """Tries to add an entry with a bad date.  Should get date message"""
         response=self.tester.post('/entry',
             data=dict(
                 user=current_user,
-                title='Fake Journal Entry',
+                title='FakeJournalEntry',
                 date='07-31-2017',
                 time=50,
                 entry='Fake entry here',
@@ -137,10 +143,11 @@ class JournalEntryTestCase(unittest.TestCase):
         self.assertIn(b'Enter the date as MM/DD/YYYY', response.data)
 
     def test_invalid_time_add_entry(self):
+        """Tries to add an entry with bad time data.  Should get time message"""
         response=self.tester.post('/entry',
             data=dict(
                 user=current_user,
-                title='Fake Journal Entry',
+                title='FakeJournalEntry',
                 date='07/31/2017',
                 time='50 minutes',
                 entry='Fake entry here',
@@ -149,7 +156,8 @@ class JournalEntryTestCase(unittest.TestCase):
         self.assertIn(b'Enter a number value only for time spent', response.data)
 
     def cleanUp(self):
-        get_entry = Journal.get(Journal.title == 'Fake Journal Entry')
+        """Deletes entry added to db and logs out user."""
+        get_entry = Journal.get(Journal.title == 'FakeJournalEntry')
         get_entry.delete_instance()
         logout_user = self.tester.get('/logout', follow_redirects=True)
 

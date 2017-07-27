@@ -8,7 +8,7 @@
     
     
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for models.py: 86%</title>
+    <title>Coverage for models.py: 85%</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     
     <script type="text/javascript" src="jquery.min.js"></script>
@@ -24,14 +24,14 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>models.py</b> :
-            <span class="pc_cov">86%</span>
+            <span class="pc_cov">85%</span>
         </h1>
 
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
 
         <h2 class="stats">
-            36 statements &nbsp;
-            <span class="run hide_run shortkey_r button_toggle_run">31 run</span>
+            34 statements &nbsp;
+            <span class="run hide_run shortkey_r button_toggle_run">29 run</span>
             <span class="mis shortkey_m button_toggle_mis">5 missing</span>
             <span class="exc shortkey_x button_toggle_exc">0 excluded</span>
 
@@ -110,24 +110,18 @@
 <p id="n41" class="stm run hide_run"><a href="#n41">41</a></p>
 <p id="n42" class="stm run hide_run"><a href="#n42">42</a></p>
 <p id="n43" class="stm run hide_run"><a href="#n43">43</a></p>
-<p id="n44" class="pln"><a href="#n44">44</a></p>
-<p id="n45" class="stm run hide_run"><a href="#n45">45</a></p>
+<p id="n44" class="stm run hide_run"><a href="#n44">44</a></p>
+<p id="n45" class="pln"><a href="#n45">45</a></p>
 <p id="n46" class="stm run hide_run"><a href="#n46">46</a></p>
 <p id="n47" class="stm run hide_run"><a href="#n47">47</a></p>
-<p id="n48" class="pln"><a href="#n48">48</a></p>
+<p id="n48" class="stm run hide_run"><a href="#n48">48</a></p>
 <p id="n49" class="pln"><a href="#n49">49</a></p>
 <p id="n50" class="pln"><a href="#n50">50</a></p>
 <p id="n51" class="stm run hide_run"><a href="#n51">51</a></p>
-<p id="n52" class="pln"><a href="#n52">52</a></p>
-<p id="n53" class="stm run hide_run"><a href="#n53">53</a></p>
-<p id="n54" class="stm run hide_run"><a href="#n54">54</a></p>
+<p id="n52" class="stm mis"><a href="#n52">52</a></p>
+<p id="n53" class="stm mis"><a href="#n53">53</a></p>
+<p id="n54" class="stm mis"><a href="#n54">54</a></p>
 <p id="n55" class="pln"><a href="#n55">55</a></p>
-<p id="n56" class="pln"><a href="#n56">56</a></p>
-<p id="n57" class="stm run hide_run"><a href="#n57">57</a></p>
-<p id="n58" class="stm mis"><a href="#n58">58</a></p>
-<p id="n59" class="stm mis"><a href="#n59">59</a></p>
-<p id="n60" class="stm mis"><a href="#n60">60</a></p>
-<p id="n61" class="pln"><a href="#n61">61</a></p>
 
             </td>
             <td class="text">
@@ -168,30 +162,24 @@
 <p id="t35" class="stm run hide_run"><span class="key">class</span> <span class="nam">Journal</span><span class="op">(</span><span class="nam">Model</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
 <p id="t36" class="pln">    <span class="str">"""Model for creating a new journal entry """</span><span class="strut">&nbsp;</span></p>
 <p id="t37" class="stm run hide_run">    <span class="nam">user</span> <span class="op">=</span> <span class="nam">ForeignKeyField</span><span class="op">(</span><span class="nam">User</span><span class="op">,</span> <span class="nam">related_name</span><span class="op">=</span><span class="str">"journal"</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t38" class="stm run hide_run">    <span class="nam">title</span> <span class="op">=</span> <span class="nam">CharField</span><span class="op">(</span><span class="nam">max_length</span><span class="op">=</span><span class="num">100</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t38" class="stm run hide_run">    <span class="nam">title</span> <span class="op">=</span> <span class="nam">CharField</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t39" class="stm run hide_run">    <span class="nam">date</span> <span class="op">=</span> <span class="nam">DateField</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t40" class="stm run hide_run">    <span class="nam">time</span> <span class="op">=</span> <span class="nam">IntegerField</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t41" class="stm run hide_run">    <span class="nam">entry</span> <span class="op">=</span> <span class="nam">TextField</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t42" class="stm run hide_run">    <span class="nam">resources</span> <span class="op">=</span> <span class="nam">TextField</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t43" class="stm run hide_run">    <span class="nam">timestamp</span> <span class="op">=</span> <span class="nam">DateTimeField</span><span class="op">(</span><span class="nam">default</span><span class="op">=</span><span class="nam">datetime</span><span class="op">.</span><span class="nam">datetime</span><span class="op">.</span><span class="nam">now</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t44" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t45" class="stm run hide_run">    <span class="key">class</span> <span class="nam">Meta</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t46" class="stm run hide_run">        <span class="nam">database</span> <span class="op">=</span> <span class="nam">DATABASE</span><span class="strut">&nbsp;</span></p>
-<p id="t47" class="stm run hide_run">        <span class="nam">order_by</span> <span class="op">=</span> <span class="op">(</span><span class="str">'-timestamp'</span><span class="op">,</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t48" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t43" class="stm run hide_run">    <span class="nam">tag</span> <span class="op">=</span> <span class="nam">CharField</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t44" class="stm run hide_run">    <span class="nam">timestamp</span> <span class="op">=</span> <span class="nam">DateTimeField</span><span class="op">(</span><span class="nam">default</span><span class="op">=</span><span class="nam">datetime</span><span class="op">.</span><span class="nam">datetime</span><span class="op">.</span><span class="nam">now</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t45" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t46" class="stm run hide_run">    <span class="key">class</span> <span class="nam">Meta</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t47" class="stm run hide_run">        <span class="nam">database</span> <span class="op">=</span> <span class="nam">DATABASE</span><span class="strut">&nbsp;</span></p>
+<p id="t48" class="stm run hide_run">        <span class="nam">order_by</span> <span class="op">=</span> <span class="op">(</span><span class="str">'-timestamp'</span><span class="op">,</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t49" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t50" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t51" class="stm run hide_run"><span class="key">class</span> <span class="nam">Tag</span><span class="op">(</span><span class="nam">Model</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t52" class="pln">    <span class="str">"""Model for creating a new tag"""</span><span class="strut">&nbsp;</span></p>
-<p id="t53" class="stm run hide_run">    <span class="nam">journal</span> <span class="op">=</span> <span class="nam">ForeignKeyField</span><span class="op">(</span><span class="nam">Journal</span><span class="op">,</span> <span class="nam">related_name</span><span class="op">=</span><span class="str">'tag'</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t54" class="stm run hide_run">    <span class="nam">tag</span> <span class="op">=</span> <span class="nam">CharField</span><span class="op">(</span><span class="nam">max_length</span><span class="op">=</span><span class="str">"20"</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t51" class="stm run hide_run"><span class="key">def</span> <span class="nam">initialize</span><span class="op">(</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t52" class="stm mis">    <span class="nam">DATABASE</span><span class="op">.</span><span class="nam">connect</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t53" class="stm mis">    <span class="nam">DATABASE</span><span class="op">.</span><span class="nam">create_tables</span><span class="op">(</span><span class="op">[</span><span class="nam">User</span><span class="op">,</span> <span class="nam">Journal</span><span class="op">]</span><span class="op">,</span> <span class="nam">safe</span><span class="op">=</span><span class="key">True</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t54" class="stm mis">    <span class="nam">DATABASE</span><span class="op">.</span><span class="nam">close</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t55" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t56" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t57" class="stm run hide_run"><span class="key">def</span> <span class="nam">initialize</span><span class="op">(</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t58" class="stm mis">    <span class="nam">DATABASE</span><span class="op">.</span><span class="nam">connect</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t59" class="stm mis">    <span class="nam">DATABASE</span><span class="op">.</span><span class="nam">create_tables</span><span class="op">(</span><span class="op">[</span><span class="nam">User</span><span class="op">,</span> <span class="nam">Journal</span><span class="op">,</span> <span class="nam">Tag</span><span class="op">]</span><span class="op">,</span> <span class="nam">safe</span><span class="op">=</span><span class="key">True</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t60" class="stm mis">    <span class="nam">DATABASE</span><span class="op">.</span><span class="nam">close</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t61" class="pln"><span class="strut">&nbsp;</span></p>
 
             </td>
         </tr>
@@ -202,7 +190,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.4.1</a>,
-            created at 2017-07-26 10:21
+            created at 2017-07-26 16:24
         </p>
     </div>
 </div>
