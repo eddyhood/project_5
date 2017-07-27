@@ -3,20 +3,31 @@
 /* ==========================================================================
    Global Styles
    ========================================================================== */
-
+* {
+	margin: 0;
+	padding: 0;
+}
 body {
 	font-size: 16px;
 	color: #404a49;
 	font-family: 'Cousine', serif;
 	font-weight: 400;
+	height:100%;
 }
 .container {
 	margin: 0 auto;
 	padding: 0 25px;
 }
+.container-right{
+	float: right;
+}
+.container-left{
+	float: left;
+}
 header .site-header {
 	margin: 0 auto;
 	height: 95px;
+	background-color: #e6e6e6;
 }
 header .logo i {
 	color: #678f89;
@@ -32,8 +43,21 @@ footer {
 	text-align: center;
 	padding: 35px 0;
 	border-top: 2px dotted #678f89;
+	background-color: #678F89;
+	color: #FFFFFF;
 }
-
+a {
+	color: #78a571;
+}
+.flash{
+	background-color: #678F89;
+	padding: 15px;
+	text-align: center;
+	color: #FFFFFF;
+}
+section{
+	padding: 50px;
+}
 
 
 /* ==========================================================================
@@ -42,14 +66,14 @@ footer {
 
 .button {
 	padding: 8px 10px 6px 10px;
-	background: #678f89;
-	border: 2px solid #678f89;
 	border-radius: 4px;
 	text-decoration: none;
-	color: #FFF;
+	color: #FFFFFF;
 	position: relative;
 	text-align: center;
 	font-size: 14px;
+	border-radius: 2px;
+	background-color: #678F89;
 }
 .button.button-secondary {
 	background: #FFF;
@@ -59,6 +83,7 @@ footer {
 .button.icon-right {
 	padding-right: 30px;
 	top: -10px;
+	margin-right: 10px;
 }
 .button.icon-left {
 	padding-left: 30px;
@@ -94,7 +119,7 @@ h3 {
 }
 h1 {
 	font-size: 44px;
-	margin-bottom: 12px;
+	margin: 15px;
 }
 h2 {
 	font-size: 32px;
@@ -129,13 +154,17 @@ ul li a {
 	color: #678f89;
 	text-decoration: none;
 }
-
+.center{
+	text-align: center;
+}
 
 
 /* ==========================================================================
    Page Styles
    ========================================================================== */
-
+.content{
+	min-height: calc(100vh - 70px)
+}
 .entry-list,
 .edit-entry,
 .new-entry {
@@ -182,7 +211,9 @@ ul li a {
 	font-size: 18px;
 }
 
-
+.footer{
+	height: 50px;
+}
 
 /* ==========================================================================
    Form Styles
@@ -203,7 +234,8 @@ form textarea {
 	padding:10px 13px;
 	margin-bottom: 30px;
 	border-radius: 4px;
-	width: calc(100% - 32px);
+	width: calc(75%);
+	background-color: rgba(120, 165, 113, 0.21);
 }
 form input[type=text]:focus,
 form input[type=date]:focus,
@@ -225,9 +257,14 @@ input[type=submit] {
 	margin-right: 5px;
 }
 
+/* ==========================================================================
+   Image Styles
+   ========================================================================== */
 
-
-
+.img-right{
+	height: 250px;
+	float: right;
+}
 
 
 

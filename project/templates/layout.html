@@ -11,39 +11,38 @@
         <link rel="stylesheet" href="static/css/site.css">
     </head>
     <body>
-        <header>
-            <div class="container">
-                <div class="site-header">
-                    <a class="logo" href="{{ url_for('index') }}"><i class="material-icons">library_books</i></a>
-                    {% if current_user.is_authenticated %}
-                    <a class="button icon-right" href="{{ url_for('add_entry')}}"><span>New Entry</span> <i class="material-icons">add</i></a>
-                    {% endif %}
+        <div class="content">
+            <header>
+                <div class="container">
+                    <div class="site-header">
+                        <a class="logo" href="{{ url_for('index') }}"><i class="material-icons">library_books</i></a>
+                        {% if current_user.is_authenticated %}
+                        <a class="button icon-right" href="{{ url_for('add_entry')}}"><span>New Entry</span> <i class="material-icons">add</i></a>
+                        <a class="button icon-right" href="{{ url_for('entries')}}"><span>My Entries</span> <i class="material-icons">add</i></a>
+                        <a class="button icon-right" href="{{ url_for('logout')}}"><span>Logout</span> <i class="material-icons">add</i></a>
+                        {% else%}
+                        <a class="button icon-right" href="{{ url_for('register')}}"><span>Register</span> <i class="material-icons">add</i></a>
+                        <a class="button icon-right" href="{{ url_for('login')}}"><span>Login</span> <i class="material-icons">add</i></a>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-            <nav>
-                {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('add_entry')}}">Add entry</a>
-                    <a href="{{ url_for('entries')}}">Your Entries</a>
-                    <a href="{{ url_for('logout') }}">Log out</a>
-                {% else%}
-                    <a href="{{ url_for('register') }}">Register</a>
-                    <a href="{{ url_for('login') }}">Log in</a>
+                <nav>
+                </nav>
+            </header>
+            <!-- Add flash messages -->
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="notification {{ category }} flash">{{ message }}</div>
+                    {% endfor %}
                 {% endif %}
-            </nav>
-        </header>
-        <!-- Add flash messages -->
-        {% with messages = get_flashed_messages(with_categories=True) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                <div class="notification {{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+            {% endwith %}
 
-        <!-- Enter content for specific html pages -->
-        {% block content %}
-        {% endblock %}
-    <footer>
+            <!-- Enter content for specific html pages -->
+            {% block content %}
+            {% endblock %}
+        </div>
+        <footer class="footer">
             <div>
                 &copy; MyJournal by Eddy Hood
             </div>

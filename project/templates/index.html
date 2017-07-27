@@ -1,16 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
     {% if current_user.is_authenticated %}
-        <h1>Welcome {{current_user.username}}</h1>
+        <h1 class="center">Welcome {{current_user.username}}</h1>
     {% else %}
-        <h1>Welcome Dear Journalist!</h1>
+        <h1 class="center">Welcome Future Journalist!</h1>
     {% endif %}
         <section>
-            <div class="container">
+            <div class="container-left">
             <p>Journalist helps you keep track of what you learn in life.</p>
             <p>You can track resources, time spent, and more. Login today
             to get strated.</p>
-            <img src="static/images/journalist.jpg" alt="Journalist">
+            </div>
+            <div class="container-right">
+                <img src="static/images/journalist.jpg" alt="Journalist" class="img-right">
             </div>
         </section>
 {% endblock %}
