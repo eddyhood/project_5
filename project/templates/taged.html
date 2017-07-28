@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "entries.html" %}
 {% block content %}
     <h1>Journal Entries for {{current_user.username}}</h1>
         <section>
@@ -17,4 +17,5 @@
                 </div>
             </div>
         </section>
+{{ super() }}
 {% endblock %}

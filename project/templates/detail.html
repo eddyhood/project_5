@@ -1,27 +1,27 @@
-{% extends 'layout.html' %}
+{% extends "layout.html" %}
 {% block content %}
-        <section>
-            <div class="container">
-                <div class="entry-list single">
-                {%for entry in entry %}
-                    <h2>{{ entry.title }}</h2>
-                    <p>{{ entry.date }}</p>
-                    <h2>Time Spent</h2>
-                    <p>{{ entry.time }}</p>
-                    <h2>What I Learned</h2>
-                    <p>{{ entry.entry }}</p>
-                    <h2>Resources to Remember</h2>
-                    <p>{{ entry.resources }}</p>
-                    <h4>Tags</h4>
-                    <p>{{ entry.tag }}</p>
-                {% endfor %}
-                </div>
+    <section>
+        <div class="container">
+            <div class="entry-list single">
+            {%for entry in entry %}
+                <h2>{{ entry.title }}</h2>
+                <p>{{ entry.date }}</p>
+                <h2>Time Spent</h2>
+                <p>{{ entry.time }}</p>
+                <h2>What I Learned</h2>
+                <p>{{ entry.entry }}</p>
+                <h2>Resources to Remember</h2>
+                <p>{{ entry.resources }}</p>
+                <h4>Tags</h4>
+                <p>{{ entry.tag }}</p>
+            {% endfor %}
             </div>
-            <div class="edit">
-                {% for entry in entry %}
-                <p><a href="{{url_for('edit', entry_title = entry.title)}}">Edit Entry</a></p>
-                <p><a href="{{url_for('delete', entry_title = entry.title)}}">Delete Entry</a></p>
-                {% endfor %}
-            </div>
-        </section>
+        </div>
+        <div class="edit">
+            {% for entry in entry %}
+            <p><a href="{{url_for('edit', entry_title = entry.title)}}">Edit Entry</a></p>
+            <p><a href="{{url_for('delete', entry_title = entry.title)}}">Delete Entry</a></p>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}

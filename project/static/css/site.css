@@ -27,7 +27,6 @@ body {
 header .site-header {
 	margin: 0 auto;
 	height: 95px;
-	background-color: #e6e6e6;
 }
 header .logo i {
 	color: #678f89;
@@ -169,8 +168,6 @@ ul li a {
 .edit-entry,
 .new-entry {
 	max-width: 800px;
-	margin: 0 auto;
-	padding: 70px 0 150px 0;
 }
 .edit-entry h2,
 .new-entry h2 {
@@ -266,6 +263,23 @@ input[type=submit] {
 	float: right;
 }
 
+/* ==========================================================================
+   Entry Styles
+   ========================================================================== */
+
+.list-header{
+	background-color: #678F89;
+
+}
+
+.list-title{
+	padding: 10px;
+	color: #ffffff;
+	width: calc(10%);
+}
+.list-text{
+	text-align: center;
+}
 
 
 

@@ -113,6 +113,7 @@ def add_entry():
         return redirect(url_for('index'))
     return render_template('new.html', form=form)
 
+
 @app.route('/entries')
 @login_required
 def entries():
@@ -127,6 +128,7 @@ def details(entry_title):
     """Allows a user to look at the details of a journal entry"""
     entry = models.Journal.select().where(models.Journal.title == entry_title)
     return render_template('detail.html', entry=entry)
+
 
 @app.route('/entries/edit/<entry_title>', methods=('GET', 'POST'))
 @login_required

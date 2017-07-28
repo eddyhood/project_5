@@ -2,19 +2,21 @@
 {% block content %}
     <h1>Journal Entries for {{current_user.username}}</h1>
         <section>
-            <div class="container">
-                <div class="entry-list">
-                <h3>Title/Date/Tag</h3>
-                {% if entries %}
-                    {% for entry in entries %}
-                        <a href="{{url_for('details', entry_title = entry.title)}}">{{entry.title}}</a>{{entry.date}}
-                        <a href="{{url_for('tagview', tag = entry.tag)}}">{{entry.tag}}</a></br>
-                    {% endfor %}
-                {% else %}
-                    <p>No journal entries yet.</p>
-                {% endif %}
-                    </article>
-                </div>
-            </div>
+            <table>
+                <tr class="list-header">
+                    <th class="list-title">Title</th>
+                    <th class="list-title">Date</th>
+                    <th class="list-title">Tag</th>
+                </tr>
+                    {% if entries %}
+                        {% for entry in entries%}
+                        <tr>
+                        <td class="list-text"><a href="{{url_for('details', entry_title = entry.title)}}">{{entry.title}}</a></td>
+                        <td class="list-text">{{entry.date}}</td>
+                        <td class="list-text"><a href="{{url_for('tagview', tag = entry.tag)}}">{{entry.tag}}</a></td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+            </table>
         </section>
 {% endblock %}
