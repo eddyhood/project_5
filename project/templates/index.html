@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     {% if current_user.is_authenticated %}
-        <h1 class="center">Welcome {{current_user.username}}</h1>
+        <h1 class="center">{{current_user.username}}'s Journal</h1>
     {% else %}
         <h1 class="center">Welcome Future Journalist!</h1>
     {% endif %}

@@ -38,7 +38,7 @@ class TemplatesTestCase(unittest.TestCase):
 
     def test_add_entry_render(self):
         response = self.tester.get('/entry', content_type='html/text')
-        self.assertTrue(b'Add a New Journal Entry!' in response.data)
+        self.assertIn(b'Add a New Journal Entry!', response.data)
 
 
 class FormsTestCase(unittest.TestCase):
@@ -157,7 +157,7 @@ class JournalEntryTestCase(unittest.TestCase):
 
     def cleanUp(self):
         """Deletes entry added to db and logs out user."""
-        get_entry = Journal.get(Journal.title == 'FakeJournalEntry')
+        get_entry = Journal.select().where(Journal.title == 'FakeJournalEntry')
         get_entry.delete_instance()
         logout_user = self.tester.get('/logout', follow_redirects=True)
 

@@ -49,7 +49,7 @@ a {
 	color: #78a571;
 }
 .flash{
-	background-color: #678F89;
+	background-color: #d2a34f;
 	padding: 15px;
 	text-align: center;
 	color: #FFFFFF;
@@ -156,7 +156,14 @@ ul li a {
 .center{
 	text-align: center;
 }
-
+.delete-box{
+	margin: 31px;
+	width: calc(50%);
+	background-color: #7ba57b;
+	color: #FFFFFF;
+	border-radius: 5px;
+	padding: 10px;
+}
 
 /* ==========================================================================
    Page Styles

@@ -21,6 +21,7 @@ class User(UserMixin, Model):
 
     @classmethod
     def create_user(cls, username, email, password):
+        """Creates a user and hashes the password"""
         try:
             with DATABASE.transaction():
                 cls.create(
@@ -49,7 +50,7 @@ class Journal(Model):
 
 
 def initialize():
+    """Initializes the database, creates the tables, and closes the db."""
     DATABASE.connect()
     DATABASE.create_tables([User, Journal], safe=True)
     DATABASE.close()
-

@@ -1,11 +1,10 @@
 from datetime import datetime
 
-from flask import (Flask, g, render_template, flash, redirect, url_for, abort)
+from flask import Flask, g, render_template, flash, redirect, url_for, abort
 from flask_bcrypt import Bcrypt, check_password_hash
 from flask_login import (LoginManager, login_user, logout_user,
                          login_required, current_user)
 from flask_wtf.csrf import CSRFProtect
-
 
 import forms
 import models
@@ -24,8 +23,9 @@ csrf =CSRFProtect(app)
 login_manager =LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-
 @login_manager.user_loader
+
+
 def load_user(userid):
     """This funcion is what we use to find users."""
     try:
@@ -44,13 +44,15 @@ def before_request():
 
 @app.teardown_request
 def teardown_request(exception):
-    """Close down the database connection at the end of each request or error"""
+    """Close the database connection at the end of each request or error"""
     db =getattr(g, 'db', None)
     if db is not None:
         db.close()
 
+
 @app.route('/')
 def index():
+    """Renders the homepage"""
     return render_template('index.html')
 
 
@@ -118,7 +120,8 @@ def add_entry():
 @login_required
 def entries():
     """List view of all entries"""
-    entries = models.Journal.select().limit(7)
+    user = g.user._get_current_object()
+    entries = models.Journal.select().where(models.Journal.user == user).limit(7)
     return render_template('entries.html', entries=entries)
 
 
@@ -154,6 +157,7 @@ def edit(entry_title):
 @app.route('/entries/delete/<entry_title>', methods=('GET', 'POST'))
 @login_required
 def delete(entry_title):
+    """Allows a user to delete an entry"""
     entry = models.Journal.get(models.Journal.title == entry_title)
     form = forms.DeleteEntryForm()
     if form.validate_on_submit():
@@ -169,6 +173,7 @@ def delete(entry_title):
 @app.route('/entries/tag/<tag>')
 @login_required
 def tagview(tag):
+    """Shows all entries for a given tag"""
     get_entries = models.Journal.select().where(models.Journal.tag == tag)
     return render_template('taged.html', entries=get_entries)
 
@@ -184,4 +189,3 @@ if __name__ == '__main__':
     except ValueError:
         pass
     app.run()
-

@@ -1,4 +1,4 @@
-#default config
+# default config
 class BaseConfig(object):
     DEBUG = False
     SECRET_KEY = 'alkjwrew/wt,-40[-q34pok34/2;;1120i;434//.,-20391`!!'
@@ -19,4 +19,3 @@ class DevelopmentConfig(BaseConfig):
 class ProductionCONFIG(BaseConfig):
     DEBUG = False
     WTF_CSRF_ENABLED = True
-
